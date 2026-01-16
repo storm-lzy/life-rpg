@@ -27,8 +27,8 @@
               <div class="task-title">{{ task.title }}</div>
               <div class="task-desc">{{ task.description }}</div>
               <div class="task-meta">
-                <van-tag v-if="task.category" plain size="small">{{ task.category }}</van-tag>
-                <van-tag :type="task.type === 'daily' ? 'primary' : 'warning'" size="small">
+                <van-tag v-if="task.category" plain>{{ task.category }}</van-tag>
+                <van-tag :type="task.type === 'daily' ? 'primary' : 'warning'">
                   {{ task.type === 'daily' ? '每日' : '一次性' }}
                 </van-tag>
               </div>
@@ -49,7 +49,7 @@
             >
               完成任务
             </van-button>
-            <van-tag v-else type="success" size="large">✓ 已完成</van-tag>
+            <van-tag v-else type="success">✓ 已完成</van-tag>
           </div>
         </div>
       </van-pull-refresh>

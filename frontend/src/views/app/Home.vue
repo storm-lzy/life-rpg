@@ -45,8 +45,8 @@
       <van-swipe :autoplay="5000" indicator-color="white" class="announcement-swipe">
         <van-swipe-item v-for="item in announcements" :key="item.id">
           <div class="announcement-item" @click="showAnnouncement(item)">
-            <van-tag :type="{ notice: 'primary', activity: 'warning', update: 'success' }[item.type]" class="tag">
-              {{ { notice: '通知', activity: '活动', update: '更新' }[item.type] }}
+            <van-tag :type="({ notice: 'primary', activity: 'warning', update: 'success' } as Record<string, any>)[item.type]" class="tag">
+              {{ ({ notice: '通知', activity: '活动', update: '更新' } as Record<string, string>)[item.type] }}
             </van-tag>
             <span class="title">{{ item.title }}</span>
           </div>

@@ -12,8 +12,8 @@
         <el-table-column prop="content" label="内容" show-overflow-tooltip />
         <el-table-column label="类型" width="100">
           <template #default="{ row }">
-            <el-tag :type="{ notice: 'info', activity: 'warning', update: 'success' }[row.type]">
-              {{ { notice: '通知', activity: '活动', update: '更新' }[row.type] }}
+            <el-tag :type="({ notice: 'info', activity: 'warning', update: 'success' } as Record<string, any>)[row.type]">
+              {{ ({ notice: '通知', activity: '活动', update: '更新' } as Record<string, string>)[row.type] }}
             </el-tag>
           </template>
         </el-table-column>
