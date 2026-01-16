@@ -1,0 +1,26 @@
+# 忽略不需要打包的文件
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.tar
+
+# Go 构建产物
+/main
+/life-rpg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 日志
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db

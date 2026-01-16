@@ -1,0 +1,86 @@
+# ==========================
+# 操作系统相关
+# ==========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ==========================
+# IDE 和编辑器
+# ==========================
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*~
+*.sublime-project
+*.sublime-workspace
+
+# ==========================
+# Go 后端
+# ==========================
+# 二进制文件
+/backend/my-life-rpg
+/backend/my-life-rpg.exe
+/backend/*.exe
+/backend/*.exe~
+/backend/*.dll
+/backend/*.so
+/backend/*.dylib
+
+# 测试文件
+/backend/*.test
+/backend/*.out
+/backend/coverage.txt
+/backend/coverage.html
+
+# Go 工作区文件
+/backend/go.work
+/backend/go.work.sum
+
+# 数据库文件
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# 环境配置文件
+.env
+.env.local
+.env.*.local
+
+# ==========================
+# 前端 (补充根目录规则)
+# ==========================
+/frontend/node_modules/
+/frontend/dist/
+/frontend/dist-ssr/
+/frontend/*.local
+
+# 日志文件
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ==========================
+# Docker
+# ==========================
+docker-compose.override.yml
+
+# ==========================
+# 临时文件
+# ==========================
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
