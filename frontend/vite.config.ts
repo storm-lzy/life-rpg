@@ -13,10 +13,10 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
-    allowedHosts: ['frp-sea.com', '.frp-sea.com','frp-use.com','.frp-use.com'],
+    allowedHosts: ['frp-sea.com', '.frp-sea.com', 'frp-use.com', '.frp-use.com'],
     proxy: {
       '/api': {
-        target: 'http://frp-use.com:42714',
+        target: 'http://119.29.182.41:8080',
         changeOrigin: true,
       }
     }

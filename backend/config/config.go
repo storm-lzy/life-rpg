@@ -39,7 +39,7 @@ var AppConfig *Config
 func InitConfig() {
 	AppConfig = &Config{
 		DB: DBConfig{
-			Host:     getEnv("DB_HOST", "mysql01"),
+			Host:     getEnv("DB_HOST", "mysql8"),
 			Port:     getEnv("DB_PORT", "3306"),
 			User:     getEnv("DB_USER", "root"),
 			Password: getEnv("DB_PASSWORD", "123456"),
