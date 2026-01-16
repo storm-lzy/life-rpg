@@ -1,41 +1,36 @@
-# 构建阶段
-FROM golang:1.21-alpine AS builder
+# ============================
+# 阶段 1: 编译后端 (Go)
+# ============================
+FROM golang:1.22-alpine AS builder
 
 # 设置工作目录
 WORKDIR /app
 
-# 安装必要的构建工具
-RUN apk add --no-cache git
+# 1. 设置国内代理 (服务器构建时这步很重要，除非服务器在海外)
+ENV GOPROXY=https://goproxy.cn,direct
 
-# 复制 go.mod 和 go.sum
-COPY go.mod go.sum ./
-
-# 下载依赖
+# 2. 复制依赖文件并下载
+COPY backend/go.mod backend/go.sum ./
 RUN go mod download
 
-# 复制源代码
-COPY . .
+# 3. 复制源码
+COPY backend/ .
 
-# 构建二进制文件
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+# 4. 编译 (禁用 CGO，输出为 server)
+RUN CGO_ENABLED=0 GOOS=linux go build -o server main.go
 
-# 运行阶段
+# ============================
+# 阶段 2: 运行时 (Alpine)
+# ============================
 FROM alpine:latest
 
-# 安装 ca-certificates 用于 HTTPS 请求
-RUN apk --no-cache add ca-certificates tzdata
+WORKDIR /root/
 
-# 设置时区
-ENV TZ=Asia/Shanghai
+# 从编译阶段复制二进制文件
+COPY --from=builder /app/server .
 
-# 设置工作目录
-WORKDIR /app
-
-# 从构建阶段复制二进制文件
-COPY --from=builder /app/main .
-
-# 暴露端口
+# 暴露端口 (假设你的 Go 代码监听 8080)
 EXPOSE 8080
 
-# 运行应用
-CMD ["./main"]
+# 运行
+CMD ["./server"]
