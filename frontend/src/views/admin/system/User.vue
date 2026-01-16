@@ -206,11 +206,20 @@ const handleSubmit = async () => {
 
   submitLoading.value = true
   try {
+    // 只发送需要的字段，不发送 createdAt 等时间字段
+    const submitData = {
+      username: form.username,
+      password: form.password,
+      nickname: form.nickname,
+      roleId: form.roleId,
+      status: form.status,
+    }
+    
     if (form.id) {
-      await userApi.update(form.id, form)
+      await userApi.update(form.id, submitData)
       ElMessage.success('更新成功')
     } else {
-      await userApi.create(form)
+      await userApi.create(submitData)
       ElMessage.success('创建成功')
     }
     dialogVisible.value = false
