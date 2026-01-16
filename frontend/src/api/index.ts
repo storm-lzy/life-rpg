@@ -5,7 +5,7 @@ import { useUserStore } from '@/stores/user'
 
 // 创建 axios 实例
 const api: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: '/api',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'
@@ -30,12 +30,12 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response: AxiosResponse) => {
     const { code, message, data } = response.data
-    
+
     // 业务成功
     if (code === 0) {
       return data
     }
-    
+
     // 业务错误
     ElMessage.error(message || '请求失败')
     return Promise.reject(new Error(message))
@@ -44,7 +44,7 @@ api.interceptors.response.use(
     // HTTP 错误
     if (error.response) {
       const { status, data } = error.response
-      
+
       if (status === 401) {
         // Token 过期或无效
         const userStore = useUserStore()
@@ -59,7 +59,7 @@ api.interceptors.response.use(
     } else {
       ElMessage.error('网络错误，请检查网络连接')
     }
-    
+
     return Promise.reject(error)
   }
 )
